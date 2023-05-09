@@ -3,10 +3,19 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 
+const requestLogger = (request, response, next) => {
+  console.log('Method:', request.method)
+  console.log('Path:  ', request.path)
+  console.log('Body:  ', request.body)
+  console.log('---')
+  next()
+}
+
 app.use(express.json())
 app.use(morgan('tiny', { stream: { write: (msg) => console.log(msg.trim()) } }));
 app.use(morgan(':req-body'));
 app.use(cors())
+app.use(requestLogger)
 morgan.token('req-body', (req) => JSON.stringify(req.body));
 
 
