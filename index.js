@@ -16,6 +16,7 @@ app.use(morgan('tiny', { stream: { write: (msg) => console.log(msg.trim()) } }))
 app.use(morgan(':req-body'));
 app.use(cors())
 app.use(requestLogger)
+app.use(express.static('build'))
 morgan.token('req-body', (req) => JSON.stringify(req.body));
 
 
@@ -146,5 +147,6 @@ const http = require('http')
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
+  console.log(process.env.PORT)
   console.log(`Server running on port ${PORT}`)
 })
