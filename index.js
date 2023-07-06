@@ -61,8 +61,8 @@ app.get('/info', (request, response) => {
 
   Person.find({}).then(persons => {
     response.send(`
-      <p>Phonebook has info to ${persons.length} persons</p>
-      <p<${date}</p>
+      <p>Phonebook has info of ${persons.length} persons</p>
+      <p>${date}</p>
     `)
   })
 
