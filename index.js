@@ -89,7 +89,7 @@ app.post('/api/persons', (request, response, next) => {
     number: body.number,
   })
 
-  note.save()
+  person.save()
     .then(savedPerson => {
       response.json(savedPerson)
     })
