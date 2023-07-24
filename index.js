@@ -26,11 +26,12 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
-  } 
-  
+  }
+
   else if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message })
   }
+
 
 
 
@@ -38,12 +39,12 @@ const errorHandler = (error, request, response, next) => {
 }
 
 app.use(express.json())
-app.use(morgan('tiny', { stream: { write: (msg) => console.log(msg.trim()) } }));
-app.use(morgan(':req-body'));
+app.use(morgan('tiny', { stream: { write: (msg) => console.log(msg.trim()) } }))
+app.use(morgan(':req-body'))
 app.use(cors())
 app.use(requestLogger)
 app.use(express.static('build'))
-morgan.token('req-body', (req) => JSON.stringify(req.body));
+morgan.token('req-body', (req) => JSON.stringify(req.body))
 
 
 
@@ -125,7 +126,6 @@ app.put('/api/persons/:id', (request, response, next) => {
 })
 
 
-const http = require('http')
 
 app.use(unknownEndpoint)
 app.use(errorHandler)
